@@ -61,7 +61,7 @@ public class TransitionTable implements ITransitionTable {
     /**
      * This method uses a nested for loop to check if each valid state has a pointer to an appropriate next state
      * integer in each transition. A boolean true is returned if next state ever
-     * @return
+     * @return true if the transition table contains transitions to illegal (non-existent) state (i.e. next_states that are not in the table as a current_state) and false otherwise
      */
     @Override
     public boolean hasTransitionsToIllegalStates() {
@@ -75,9 +75,19 @@ public class TransitionTable implements ITransitionTable {
         return false;
     }
 
+    /**
+     * Checks whether the transition table is missing one or more transitions from states for valid inputs in the input alphabet.
+     * @return true if the table is missing one or more transitions from states for valid inputs and false otherwise.
+     */
     @Override
     public boolean hasMissingInputs() {
-        // TODO Auto-generated method stub
+        for (ITransition transition : this.transitionTable) {
+            for (Character input : this.validInputs) {
+                if (transition.getInput() != input) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
