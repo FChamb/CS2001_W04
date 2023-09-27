@@ -31,14 +31,14 @@ public final class Factory implements IFactory {
 
     @Override
     public ITransition makeTransition(int current_state, char input, char output, int next_state) {
-        // TODO Auto-generated method stub
-        return null;
+        ITransition transition = new Transition(current_state, input, output, next_state);
+        return transition;
     }
 
     @Override
     public ITransitionTable makeTransitionTable() {
-        // TODO Auto-generated method stub
-        return null;
+        ITransitionTable transitionTable = new TransitionTable();
+        return transitionTable;
     }
 
     @Override

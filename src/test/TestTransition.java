@@ -1,12 +1,12 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import impl.Factory;
 import interfaces.IFactory;
 import interfaces.ITransition;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This is a JUnit test class for the Transition ADT.
@@ -40,7 +40,40 @@ public class TestTransition {
         assertNotNull(transition);
     }
 
+    /**
+     * This checks that the Transition is able to grab the current state.
+     */
+    @Test
+    public void transitionCurrentState() {
+        ITransition transition = factory.makeTransition(CURRENT_STATE, INPUT, OUTPUT, NEXT_STATE);
+        assertEquals(1, transition.getCurrentState());
+    }
 
-    /* ... and more tests of your own below here to test the ADT ... */
+    /**
+     * This checks that the Transition is able to grab the input.
+     */
+    @Test
+    public void transitionInput() {
+        ITransition transition = factory.makeTransition(CURRENT_STATE, INPUT, OUTPUT, NEXT_STATE);
+        assertEquals('a', transition.getInput());
+    }
+
+    /**
+     * This checks that the Transition is able to grab the output.
+     */
+    @Test
+    public void transitionOutput() {
+        ITransition transition = factory.makeTransition(CURRENT_STATE, INPUT, OUTPUT, NEXT_STATE);
+        assertEquals('.', transition.getOutput());
+    }
+
+    /**
+     * This checks that the Transition is able to grab the next state.
+     */
+    @Test
+    public void transitionNextState() {
+        ITransition transition = factory.makeTransition(CURRENT_STATE, INPUT, OUTPUT, NEXT_STATE);
+        assertEquals(2, transition.getNextState());
+    }
 
 }
