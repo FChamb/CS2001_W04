@@ -1,19 +1,17 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import exceptions.BadTableException;
 import exceptions.BadInputException;
+import exceptions.BadTableException;
 import exceptions.NDTransitionException;
 import impl.Factory;
 import interfaces.IFactory;
 import interfaces.IFiniteStateMachine;
 import interfaces.ITransition;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This is a JUnit test class for the FSM ADT.

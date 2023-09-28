@@ -14,9 +14,9 @@ import java.util.HashSet;
  */
 public class TransitionTable implements ITransitionTable {
 
-    private ArrayList<ITransition> transitionTable; /** An array list containing all the transitions in the table */
-    private HashSet<Integer> validStates; /** A hashset containing all the valid states in the transition table */
-    private HashSet<Character> validInputs; /** A hashset containing all the valid inputs in the transition table */
+    private ArrayList<ITransition> transitionTable; /** An array list containing all the transitions in the table. */
+    private HashSet<Integer> validStates; /** A hashset containing all the valid states in the transition table. */
+    private HashSet<Character> validInputs; /** A hashset containing all the valid inputs in the transition table. */
 
     /**
      * This method is a simple add methods which uses a try/catch loop to check if the transition table already
@@ -66,10 +66,8 @@ public class TransitionTable implements ITransitionTable {
     @Override
     public boolean hasTransitionsToIllegalStates() {
         for (ITransition transition : this.transitionTable) {
-            for (Integer state : this.validStates) {
-                if (transition.getNextState() != state) {
-                    return true;
-                }
+            if (!this.validStates.contains(transition.getNextState())) {
+                return true;
             }
         }
         return false;
@@ -81,16 +79,22 @@ public class TransitionTable implements ITransitionTable {
      */
     @Override
     public boolean hasMissingInputs() {
-        for (ITransition transition : this.transitionTable) {
-            for (Character input : this.validInputs) {
-                if (transition.getInput() != input) {
-                    return true;
+        try {
+            for (Integer state : this.validStates) {
+                for (Character input : this.validInputs) {
+                    getTransition(state, input);
                 }
             }
+            return false;
+        } catch (BadInputException e) {
+            return true;
         }
-        return false;
     }
 
+    /**
+     * Simple default constructor which initializes the transition table, valid states and valid
+     * input variables.
+     */
     public TransitionTable() {
         this.transitionTable = new ArrayList<>();
         this.validStates = new HashSet<>();

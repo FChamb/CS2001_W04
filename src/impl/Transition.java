@@ -7,10 +7,10 @@ import interfaces.ITransition;
  */
 public class Transition implements ITransition {
 
-    private final int CURRENT_STATE; /** Object representing the current state of the transition. */
-    private final char INPUT; /** Object representing the input of the transition. */
-    private final char OUTPUT; /** Object representing the output of the transition. */
-    private final int NEXT_STATE; /** Object representing the next state of the transition. */
+    private final int currentState; /** Object representing the current state of the transition. */
+    private final char input; /** Object representing the input of the transition. */
+    private final char output; /** Object representing the output of the transition. */
+    private final int nextState; /** Object representing the next state of the transition. */
 
     /**
      * Simple getter object which grabs the current state of the transition.
@@ -18,7 +18,7 @@ public class Transition implements ITransition {
      */
     @Override
     public int getCurrentState() {
-        return this.CURRENT_STATE;
+        return this.currentState;
     }
 
     /**
@@ -27,7 +27,7 @@ public class Transition implements ITransition {
      */
     @Override
     public char getInput() {
-        return this.INPUT;
+        return this.input;
     }
 
     /**
@@ -36,7 +36,7 @@ public class Transition implements ITransition {
      */
     @Override
     public char getOutput() {
-        return this.OUTPUT;
+        return this.output;
     }
 
     /**
@@ -45,22 +45,22 @@ public class Transition implements ITransition {
      */
     @Override
     public int getNextState() {
-        return this.NEXT_STATE;
+        return this.nextState;
     }
 
     /**
      * This constructor takes the given input for a transition and set the local private
      * variables.
-     * @param CURRENT_STATE an integer with the current state
-     * @param INPUT a char with the input value
-     * @param OUTPUT a char with the output value
-     * @param NEXT_STATE an integer with the next state
+     * @param currentState an integer with the current state
+     * @param input a char with the input value
+     * @param output a char with the output value
+     * @param nextState an integer with the next state
      */
-    public Transition(int CURRENT_STATE, char INPUT, char OUTPUT, int NEXT_STATE) {
-        this.CURRENT_STATE = CURRENT_STATE;
-        this.INPUT = INPUT;
-        this.OUTPUT = OUTPUT;
-        this.NEXT_STATE = NEXT_STATE;
+    public Transition(int currentState, char input, char output, int nextState) {
+        this.currentState = currentState;
+        this.input = input;
+        this.output = output;
+        this.nextState = nextState;
     }
 
 }

@@ -29,22 +29,40 @@ public final class Factory implements IFactory {
         return factoryInstance;
     }
 
+    /**
+     * Creates an instance of ITransition for use in an FSM.
+     * @param current_state the current state for this FSM transition
+     * @param input the input for this FSM transition
+     * @param output the output for this FSM transition
+     * @param next_state the next state for this FSM transition
+     * @return the Transition
+     *
+     */
     @Override
     public ITransition makeTransition(int current_state, char input, char output, int next_state) {
         ITransition transition = new Transition(current_state, input, output, next_state);
         return transition;
     }
 
+    /**
+     * Creates an instance of ITransitionTable for use in a FSM.
+     * @return the new empty TransitionTable
+     *
+     */
     @Override
     public ITransitionTable makeTransitionTable() {
         ITransitionTable transitionTable = new TransitionTable();
         return transitionTable;
     }
 
+    /**
+     * Creates an instance of IFiniteStateMachine.
+     * @return the new FiniteStateMachine
+     */
     @Override
     public IFiniteStateMachine makeFiniteStateMachine() {
-        // TODO Auto-generated method stub
-        return null;
+        IFiniteStateMachine finiteStateMachine = new FiniteStateMachine();
+        return finiteStateMachine;
     }
 
 }
