@@ -103,4 +103,21 @@ public class TestFiniteStateMachine {
         assertThrows(NDTransitionException.class, () -> fsm.addTransition(t1));
     }
 
+    /**
+     * Checks whether a null transition can be added to fsm.
+     * @throws NDTransitionException should not be thrown during this test
+     */
+    @Test
+    public void addNullTransition() throws NDTransitionException {
+        assertThrows(NDTransitionException.class, () -> fsm.addTransition(null));
+    }
+
+    public void addBadInputTransitionToFSM() throws NDTransitionException {
+        ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, 2);
+        ITransition t2 = factory.makeTransition(1, 'e', 'a', 1);
+        fsm.addTransition(t1);
+        fsm.addTransition(t2);
+        assertThrows(BadInputException.class, () -> fsm.interpret("aea"));
+    }
+
 }
