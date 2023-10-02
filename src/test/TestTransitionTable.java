@@ -126,12 +126,12 @@ public class TestTransitionTable {
 
     /**
      * This checks that the transition table has no illegal states given valid transitions
-     * which doesn't include any transitions this time.
+     * which doesn't include any transitions this time. Should be false as no inputs can be missing.
      * @throws NDTransitionException if the transition already exists, in this test we ignore
      */
     @Test
     public void transitionTableIllegalStatesWithNoTransitions() throws NDTransitionException {
-        assertTrue(transitionTable.hasTransitionsToIllegalStates());
+        assertFalse(transitionTable.hasTransitionsToIllegalStates());
     }
 
     /**
