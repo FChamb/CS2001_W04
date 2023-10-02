@@ -99,8 +99,9 @@ public class TestFiniteStateMachine {
     @Test
     public void addDuplicateTransition() throws NDTransitionException {
         ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, STATE1);
+        ITransition t2 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, STATE1);
         fsm.addTransition(t1);
-        assertThrows(NDTransitionException.class, () -> fsm.addTransition(t1));
+        assertThrows(NDTransitionException.class, () -> fsm.addTransition(t2));
     }
 
     /**
@@ -112,6 +113,11 @@ public class TestFiniteStateMachine {
         assertThrows(NDTransitionException.class, () -> fsm.addTransition(null));
     }
 
+    /**
+     * Checks whether the finite state machine can recognize a transition table with bad inputs.
+     * @throws NDTransitionException should not be thrown during this test
+     */
+    @Test
     public void addBadInputTransitionToFSM() throws NDTransitionException {
         ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, 2);
         ITransition t2 = factory.makeTransition(1, 'e', 'a', 1);
