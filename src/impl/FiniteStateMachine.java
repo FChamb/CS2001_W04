@@ -24,6 +24,9 @@ public class FiniteStateMachine implements IFiniteStateMachine {
      */
     @Override
     public void addTransition(ITransition transition) throws NDTransitionException {
+        if (transition == null) {
+            throw new NDTransitionException();
+        }
         if (this.validStart) {
             this.startState = transition.getCurrentState();
             this.validStart = false;
