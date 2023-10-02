@@ -10,8 +10,7 @@ import interfaces.ITransition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This is a JUnit test class for the FSM ADT.
@@ -93,6 +92,15 @@ public class TestFiniteStateMachine {
         assertEquals("12300", fsm.interpret("11122"));
     }
 
-    /* ... and many more tests of your own below here to test the ADT ... */
+    /**
+     * Checks whether a duplicate transition can be added to fsm.
+     * @throws NDTransitionException should not be thrown during this test
+     */
+    @Test
+    public void addDuplicateTransition() throws NDTransitionException {
+        ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, STATE1);
+        fsm.addTransition(t1);
+        assertThrows(NDTransitionException.class, () -> fsm.addTransition(t1));
+    }
 
 }
