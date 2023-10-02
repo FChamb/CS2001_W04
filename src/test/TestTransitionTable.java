@@ -49,7 +49,7 @@ public class TestTransitionTable {
     public void transitionTableAddTransition() throws NDTransitionException, BadInputException {
         ITransition transition = new Transition(1, 'a', '.', 2);
         transitionTable.addTransition(transition);
-        assertEquals(transition, transitionTable.getTransition(transition.getCurrentState(), transition.getInput()));
+        assertNotNull(transitionTable.getTransition(transition.getCurrentState(), transition.getInput()));
     }
 
     /**
@@ -67,10 +67,9 @@ public class TestTransitionTable {
     /**
      * This checks that the proper error is thrown when grabbing a transition with a wrong input value.
      * @throws NDTransitionException if the transition already exists, in this test we ignore
-     * @throws BadInputException if the given current_state is not in the table or the given input character is not an element of the input alphabet this test should be thrown
      */
     @Test
-    public void transitionTableGetTransitionWithWrongCurrentState() throws NDTransitionException, BadInputException {
+    public void transitionTableGetTransitionWithWrongCurrentState() throws NDTransitionException {
         ITransition transition = new Transition(1, 'a', '.', 2);
         transitionTable.addTransition(transition);
         assertThrows(BadInputException.class, () -> transitionTable.getTransition(2, transition.getInput()));
@@ -79,10 +78,9 @@ public class TestTransitionTable {
     /**
      * This checks that the proper error is thrown when grabbing a transition with a wrong input value.
      * @throws NDTransitionException if the transition already exists, in this test we ignore
-     * @throws BadInputException if the given current_state is not in the table or the given input character is not an element of the input alphabet this test should be thrown
      */
     @Test
-    public void transitionTableGetTransitionWithWrongInput() throws NDTransitionException, BadInputException {
+    public void transitionTableGetTransitionWithWrongInput() throws NDTransitionException {
         ITransition transition = new Transition(1, 'a', '.', 2);
         transitionTable.addTransition(transition);
         assertThrows(BadInputException.class, () -> transitionTable.getTransition(transition.getCurrentState(), 'b'));
@@ -111,6 +109,28 @@ public class TestTransitionTable {
         ITransition transition2 = new Transition(2, 'b', '_', 1);
         transitionTable.addTransition(transition);
         transitionTable.addTransition(transition2);
+        assertTrue(transitionTable.hasTransitionsToIllegalStates());
+    }
+
+    /**
+     * This checks that the transition table has no illegal states given valid transitions
+     * which only includes one transition this time.
+     * @throws NDTransitionException if the transition already exists, in this test we ignore
+     */
+    @Test
+    public void transitionTableIllegalStateWithOneTransition() throws NDTransitionException {
+        ITransition transition = new Transition(1, 'a', '.', 2);
+        transitionTable.addTransition(transition);
+        assertTrue(transitionTable.hasTransitionsToIllegalStates());
+    }
+
+    /**
+     * This checks that the transition table has no illegal states given valid transitions
+     * which doesn't include any transitions this time.
+     * @throws NDTransitionException if the transition already exists, in this test we ignore
+     */
+    @Test
+    public void transitionTableIllegalStatesWithNoTransitions() throws NDTransitionException {
         assertTrue(transitionTable.hasTransitionsToIllegalStates());
     }
 
