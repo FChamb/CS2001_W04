@@ -43,6 +43,9 @@ public class FiniteStateMachine implements IFiniteStateMachine {
      */
     @Override
     public String interpret(String input) throws BadTableException, BadInputException {
+        if (this.transitionTable.hasMissingInputs() || this.transitionTable.hasTransitionsToIllegalStates()) {
+            throw new BadTableException();
+        }
         char[] inputString = input.toCharArray();
         int nextState = this.startState;
         String output = "";

@@ -157,7 +157,7 @@ public class TestTransitionTable {
         ITransition transition2 = new Transition(3, 'b', 'e', 1);
         transitionTable.addTransition(transition);
         transitionTable.addTransition(transition2);
-        assertFalse(transitionTable.hasMissingInputs());
+        assertTrue(transitionTable.hasMissingInputs());
     }
 
     /**
