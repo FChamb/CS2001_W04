@@ -11,7 +11,10 @@ import impl.Factory;
 import interfaces.IFactory;
 import interfaces.ITransitionTable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 /**
  * This is a JUnit test class for the FSM ADT.
