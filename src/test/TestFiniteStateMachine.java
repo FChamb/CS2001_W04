@@ -129,7 +129,7 @@ public class TestFiniteStateMachine {
     }
 
     /**
-     * Checks whether the finite state machine can recognize a transition table with illegal.
+     * Checks whether the finite state machine can recognize a transition table with illegal states.
      * @throws NDTransitionException should not be thrown during this test
      */
     @Test
