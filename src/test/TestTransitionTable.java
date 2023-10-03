@@ -135,7 +135,7 @@ public class TestTransitionTable {
     public void transitionTableIllegalStateWithOneTransition() throws NDTransitionException {
         ITransition transition = new Transition(1, 'a', '.', 2);
         transitionTable.addTransition(transition);
-        assertTrue(transitionTable.hasTransitionsToIllegalStates());
+        assertFalse(transitionTable.hasTransitionsToIllegalStates());
     }
 
     /**

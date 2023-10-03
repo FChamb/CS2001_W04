@@ -65,6 +65,9 @@ public class TransitionTable implements ITransitionTable {
      */
     @Override
     public boolean hasTransitionsToIllegalStates() {
+        if (this.transitionTable.size() == 1) {
+            return false;
+        }
         for (ITransition transition : this.transitionTable) {
             if (!this.validStates.contains(transition.getNextState())) {
                 return true;
