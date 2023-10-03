@@ -106,24 +106,49 @@ public class TestFiniteStateMachine {
 
     /**
      * Checks whether a null transition can be added to fsm.
-     * @throws NDTransitionException should not be thrown during this test
      */
     @Test
-    public void addNullTransition() throws NDTransitionException {
+    public void addNullTransition() {
         assertThrows(NDTransitionException.class, () -> fsm.addTransition(null));
     }
 
     /**
-     * Checks whether the finite state machine can recognize a transition table with bad inputs.
+     * Checks whether the finite state machine can recognize a transition table with next states that
+     * do not exist as current states.
      * @throws NDTransitionException should not be thrown during this test
      */
     @Test
-    public void addBadInputTransitionToFSM() throws NDTransitionException {
+    public void invalidStateWithInvalidInput() throws NDTransitionException {
         ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, 2);
         ITransition t2 = factory.makeTransition(1, 'e', 'a', 1);
         fsm.addTransition(t1);
         fsm.addTransition(t2);
         assertThrows(BadInputException.class, () -> fsm.interpret("aea"));
     }
+
+    /**
+     * Checks whether the finite state machine can recognize a transition table with illegal.
+     * @throws NDTransitionException should not be thrown during this test
+     */
+    @Test
+    public void addIllegalStateTransitionsToFSM() throws NDTransitionException {
+        ITransition t1 = factory.makeTransition(STATE1, INPUT1, OUTPUT1, 3);
+        ITransition t2 = factory.makeTransition(2, 'e', 'a', 1);
+        fsm.addTransition(t1);
+        fsm.addTransition(t2);
+        assertThrows(BadInputException.class, () -> fsm.interpret("ae"));
+    }
+
+    /**
+     * Checks whether the finite state machine can recognize an input sequence with invalid inputs.
+     * @throws NDTransitionException should not be thrown during this test
+     */
+    @Test
+    public void badInputException() throws NDTransitionException {
+        fsm.addTransition(factory.makeTransition(1, 'a', 'e', 1));
+        fsm.addTransition(factory.makeTransition(1, 'b', 'o', 1));
+        assertThrows(BadInputException.class, () -> fsm.interpret("abc"));
+    }
+
 
 }

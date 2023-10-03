@@ -153,8 +153,8 @@ public class TestTransitionTable {
      */
     @Test
     public void transitionTableHasMissingInputs() throws NDTransitionException {
-        ITransition transition = new Transition(1, 'a', 'e', 2);
-        ITransition transition2 = new Transition(1, 'b', 'e', 1);
+        ITransition transition = new Transition(1, 'a', 'e', 1);
+        ITransition transition2 = new Transition(3, 'b', 'e', 1);
         transitionTable.addTransition(transition);
         transitionTable.addTransition(transition2);
         assertFalse(transitionTable.hasMissingInputs());
