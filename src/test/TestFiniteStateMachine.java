@@ -123,7 +123,7 @@ public class TestFiniteStateMachine {
         ITransition t2 = factory.makeTransition(1, 'e', 'a', 1);
         fsm.addTransition(t1);
         fsm.addTransition(t2);
-        assertThrows(BadInputException.class, () -> fsm.interpret("aea"));
+        assertThrows(BadTableException.class, () -> fsm.interpret("aea"));
     }
 
     /**
@@ -136,7 +136,7 @@ public class TestFiniteStateMachine {
         ITransition t2 = factory.makeTransition(2, 'e', 'a', 1);
         fsm.addTransition(t1);
         fsm.addTransition(t2);
-        assertThrows(BadInputException.class, () -> fsm.interpret("ae"));
+        assertThrows(BadTableException.class, () -> fsm.interpret("ae"));
     }
 
     /**

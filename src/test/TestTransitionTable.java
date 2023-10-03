@@ -65,6 +65,17 @@ public class TestTransitionTable {
     }
 
     /**
+     * This checks that the transition table can throw the proper error when grabbing a transition
+     * from an empty table.
+     * @throws NDTransitionException if the transition already exists, in this test it should be thrown
+     */
+    @Test
+    public void transitionTableGetTransitionWithEmptyTable() throws NDTransitionException {
+        ITransition transition = new Transition(1, 'a', '.', 2);
+        assertThrows(BadInputException.class, () -> transitionTable.getTransition(transition.getCurrentState(), transition.getInput()));
+    }
+
+    /**
      * This checks that the proper error is thrown when grabbing a transition with a wrong input value.
      * @throws NDTransitionException if the transition already exists, in this test we ignore
      */
